@@ -27,6 +27,6 @@ int main(void) {
     s.push(5);
     s.push(6);
     std::cout << "Printing the stack:" << std::endl;
-    //s.print();
+    s.print();
     return 0;
 }

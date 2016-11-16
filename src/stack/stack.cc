@@ -2,7 +2,10 @@
 #include "stack.h"
 
 // TODO: Implementation of print for SValue
-// void print(SValue) {}
+void print( SValue value ) 
+{
+    std::cout << value;
+}
 
 // Implementation of default constructor
 Stack::Stack()
@@ -89,8 +92,26 @@ SValue Stack::pop()
 
 
 // TODO: Implementation of empty method
-// bool Stack::empty() const {}
+bool Stack::empty() const
+{
+    if ( this->head == nullptr )
+        return true;
+    else
+        return false;
+        
+}
 
 
 // TODO: Implementation of print method
-// void Stack::print() {}
+void Stack::print() const
+{
+Node *ptr;
+
+   ptr = this->head.get();
+   while( ptr != nullptr )
+   {
+      ::print( ptr->data );
+      std::cout << std::endl;
+      ptr = ptr->next.get();
+   }
+}
