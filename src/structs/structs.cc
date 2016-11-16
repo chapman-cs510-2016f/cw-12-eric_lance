@@ -67,7 +67,7 @@ Vec3 operator+(const Vec3& a, const Vec3& b)
     return ans;
 }
 
-Vec2 operator+(const Vec2&, const Vec2&)
+Vec2 operator+(const Vec2& a, const Vec2& b)
 {
     Vec2 ans = Vec2();
     ans.x = a.x + b.x;
