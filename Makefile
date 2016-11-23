@@ -6,7 +6,10 @@
 
 # Sets default compiler options
 export CXX = g++
-export CXXFLAGS = -Wall -O0 -std=c++11 -g
+#  use this for compiling in Travis
+export CXXFLAGS = -Wall -O0  -g
+#  use this for compiling on Sage Cloud
+#export CXXFLAGS = -Wall -O0 -std=c++11 -g
 # Change to flags below for debugging with gdb
 #export CXXFLAGS = -Wall -O0 -g
 
