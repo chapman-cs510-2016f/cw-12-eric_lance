@@ -23,7 +23,7 @@ test:
 
 #  check for memory leaks
 valgrind:
-    valgrind --leak-check=full --show-leak-kinds=all test/test_stack
+	valgrind --leak-check=full --show-leak-kinds=all test/test_stack
 
 # clean target: this is executed upon a "make clean"
 clean:
