@@ -21,7 +21,11 @@ all:
 	$(MAKE) -C test/
 
 # test target: this is executed upon a "make test"
-test: 
+src: 
+	$(MAKE) -C src/
+
+# test target: this is executed upon a "make test"
+test: src
 	$(MAKE) -C test/ test
 
 #  check for memory leaks
