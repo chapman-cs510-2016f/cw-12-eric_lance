@@ -51,7 +51,10 @@ Complete the following exercises, saving your solutions in the indicated files.
 
 Analyze in this section what you found useful about this assignment in your own words. Include any lingering questions or comments that you may have.
 
-**CHANGEME**
+Unique pointers are very cool.
+The checking of variable type limits using std::numeric_limits is much more useful than the c-style #defines (not to mention having to track down the #define that you need).
+Using namespaces to access functions is new to me, I've always been in environments where you just used cout and cin and didn't have to think about global utility functions and their namespace origins.
+It's pretty cool to have set up Stack such that the user of the object has no idea of the memory management going on under the covers.  It never occured to me that a structure within a class definition could be malloc'd within the class, I had always assumed that you had to instantiate the entire object always.  From scratch, I would have created a class more similar to the C stack implementation, and then instantiated an entire object to then add to the Stack list rather than handling it (much more neatly) internally within the class.
 
 ## Honor Pledge
 

@@ -2,7 +2,7 @@
 # It automates build tasks for C (and other languages) easily
 
 # Tell make that the targets test and clean are abstract (not actual files)
-.PHONY : test clean
+.PHONY : test clean cleaner
 
 # Sets default compiler options
 export CXX = g++
@@ -20,6 +20,10 @@ all:
 # test target: this is executed upon a "make test"
 test: 
 	$(MAKE) -C test/ test
+
+#  check for memory leaks
+valgrind:
+    valgrind --leak-check=full --show-leak-kinds=all test/test_stack
 
 # clean target: this is executed upon a "make clean"
 clean:
