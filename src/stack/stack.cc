@@ -1,7 +1,8 @@
 #include <iostream>
+#include <limits>
 #include "stack.h"
 
-// TODO: Implementation of print for SValue
+// Implementation of print for SValue
 void print( SValue value ) 
 {
     std::cout << value;
@@ -33,6 +34,14 @@ std::size_t Stack::size() const
 // Implementation of push method
 void Stack::push(SValue val)
 {
+    // Use the full method to check whether Stack is full
+    if (this->full())
+    {
+        // throw an exception if empty
+        // https://www.tutorialspoint.com/cplusplus/cpp_exceptions_handling.htm
+        throw "Stack is full, cannot push onto stack!";
+    }
+
     // Create a unique_ptr named "new_node_ptr" to manage memory
     // First create a pointer to a zero-allocated Node struct using
     // the "new" keyword. See following equivalence: 
@@ -68,6 +77,10 @@ void Stack::push(SValue val)
     // automatically deallocated, since it is a unique_ptr
     // Again, we must move the new pointer uniquely to become the new head
     this->head = std::move(new_node_ptr);
+
+    //  since we have added a new element to the stack list, we need to
+    //  increment the depth
+    this->depth++;
 }
 
 
@@ -77,9 +90,9 @@ SValue Stack::pop()
     // Use the empty method to check whether Stack is empty
     if (this->empty())
     {
-        // TODO: Fix this by throwing an exception properly
+        // throw an exception if empty
         // https://www.tutorialspoint.com/cplusplus/cpp_exceptions_handling.htm
-        return -1;
+        throw "Stack is empty, cannot pop from stack!";
     }
 
     SValue val = this->head->data;
@@ -87,14 +100,33 @@ SValue Stack::pop()
     this->head = std::move(this->head->next);
     // Again, we allow the unique_ptr to the old head to be deallocated
     // automatically as it goes out of scope 
+
+    //  since we have removed an element from the stack list, we need to
+    //  decrement the depth
+    this->depth--;
+
     return val;
 }
 
 
-// TODO: Implementation of empty method
+// Implementation of empty method
 bool Stack::empty() const
 {
+    //  if the head pointer is NULL, we are at the end of the stack
     if ( this->head == nullptr )
+        return true;
+    else
+        return false;
+}
+
+// Implementation of full method
+bool Stack::full() const
+{
+    //  if the depth count is at max value for a size_t var (depth),
+    //  then report that the stack list is full
+    //  note because size_t is unsigned, we cheat by checking short of
+    //  the actual maximum (in this case smaller by 2)
+    if ( this->depth >= std::numeric_limits<std::size_t>::max() - 2 )
         return true;
     else
         return false;
@@ -102,16 +134,21 @@ bool Stack::empty() const
 }
 
 
-// TODO: Implementation of print method
+// Implementation of print method
 void Stack::print() const
 {
 Node *ptr;
 
    ptr = this->head.get();
+   //  traverse the entire stack list, printing out the data value in each element of the list
    while( ptr != nullptr )
    {
       ::print( ptr->data );
       std::cout << std::endl;
       ptr = ptr->next.get();
    }
+
+   //  since we are at the end of the stack, print out the -1 showing we have reached the end
+   std::cout << -1 << std::endl;
+
 }
