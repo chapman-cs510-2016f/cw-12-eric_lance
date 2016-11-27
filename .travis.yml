@@ -1,5 +1,7 @@
 language: cpp
 compiler: gcc
 script: make test
+sudo: required
+dist: trusty
 notifications:
   email: false
